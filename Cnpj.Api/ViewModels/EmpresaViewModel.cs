@@ -36,7 +36,6 @@ namespace Cnpj.Api.ViewModels
 
         public string fantasia { get; set; }
 
-        [Required(ErrorMessage = "O campo {0} é obrigatório")]
         public string cnpj { get; set; }
 
         public DateTime ultima_atualizacao { get; set; }

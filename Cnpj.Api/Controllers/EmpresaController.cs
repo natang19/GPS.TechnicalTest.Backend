@@ -21,12 +21,21 @@ namespace Cnpj.Api.Controllers
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Obtém todos as empresas cadastradas na base de dados local.
+        /// </summary>
+        /// <returns>Array de empresas</returns>
         [HttpGet("obter-todos")]
         public async Task<IEnumerable<EmpresaViewModel>> ObterTodos()
         {
             return _mapper.Map<IEnumerable<EmpresaViewModel>>(await _empresaService.ObterTodos());
         }
 
+        /// <summary>
+        /// Obtém os detalhes da empresa do Id.
+        /// </summary>
+        /// <param name="id">Id da empresa.</param>
+        /// <returns>Model com as informações da empresa do Id.</returns>
         [HttpGet("{id:guid}")]
         public async Task<ActionResult<EmpresaViewModel>> ObterPorId(Guid id)
         {
@@ -40,6 +49,11 @@ namespace Cnpj.Api.Controllers
             return Ok(empresaDetalhe);
         }
 
+        /// <summary>
+        /// Obtém as empresas que possuem o cep informado em seu cadastro.
+        /// </summary>
+        /// <param name="cep">String representando o cep de um endereço.</param>
+        /// <returns>Array de empresas</returns>
         [HttpGet("obter-pelo-cep/{cep}")]
         public async Task<ActionResult<IEnumerable<EmpresaViewModel>>> ObterPeloCep(string cep)
         {
@@ -53,6 +67,11 @@ namespace Cnpj.Api.Controllers
             return Ok(empresasDetalhes);
         }
 
+        /// <summary>
+        /// Adiciona um empresa na base de dados.
+        /// </summary>
+        /// <param name="empresaViewModel">Model da empresa a ser adicionado no banco de dados.</param>
+        /// <returns>Model da empresa adicionada no banco de dados.</returns>
         [HttpPost]
         public async Task<ActionResult<EmpresaViewModel>> Adicionar(EmpresaViewModel empresaViewModel)
         {
@@ -63,6 +82,11 @@ namespace Cnpj.Api.Controllers
             return CustomResponse(empresaViewModel);
         }
 
+        /// <summary>
+        /// Remove a empresa do Id
+        /// </summary>
+        /// <param name="id">Id da empresa a ser removida.</param>
+        /// <returns>Model da empresa removida do banco de dados.</returns>
         [HttpDelete("{id:guid}")]
         public async Task<ActionResult<EmpresaViewModel>> RemoverEmpresa(Guid id)
         {

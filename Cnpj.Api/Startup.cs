@@ -1,16 +1,16 @@
 ﻿using AutoMapper;
 using Cnpj.Api.Configuration;
-using Cnpj.Business.Interface;
-using Cnpj.Business.Notificacoes;
-using Cnpj.Business.Services;
 using Cnpj.Data.Context;
-using Cnpj.Data.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Swashbuckle.AspNetCore.Swagger;
+using System;
+using System.Reflection;
+using System.IO;
 
 namespace Cnpj.Api
 {
@@ -36,6 +36,16 @@ namespace Cnpj.Api
 
             services.WebApiConfig();
 
+            services.AddSwaggerGen(c => 
+            {
+                c.SwaggerDoc("v1", new Info 
+                { 
+                    Title = "Consultador Empresas", 
+                    Version = "v1", 
+                    Description = "Uma api que consulta e salva empresas retorna da consulta do webservice Receita Ws.",
+                });
+            });
+
             services.ResolveDependencies();
         }
 
@@ -51,6 +61,13 @@ namespace Cnpj.Api
             }
 
             app.UseMvcConfiguration();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("./swagger/v1/swagger.json", "Consultador Empresas");
+                c.RoutePrefix = string.Empty;
+            });
         }
     }
 }
