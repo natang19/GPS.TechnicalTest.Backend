@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Cnpj.Api.Controllers
 {
     [Route("api")]
-    public class AuthController : MainController
+    public class AuthController
     {
     }
 }
