@@ -58,10 +58,6 @@ namespace Cnpj.Business.Validacoes
                 .NotEmpty().WithMessage(ErroStringVazia)
                 .Length(5, 100).WithMessage(ErroStringTamanhoInvalido);
 
-            RuleFor(e => e.fantasia)
-                .NotEmpty().WithMessage(ErroStringVazia)
-                .Length(2, 250).WithMessage(ErroStringTamanhoInvalido);
-
             RuleFor(e => e.cnpj.Length).Equal(ValidacaoCnpj.TamanhoCnpj)
                 .WithMessage("O campo Cnpj precisa ter {ComparisonValue} caracteres e foi fornecido {PropertyValue}.");
 
