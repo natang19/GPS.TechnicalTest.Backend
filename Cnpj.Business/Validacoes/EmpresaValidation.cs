@@ -7,7 +7,7 @@ namespace Cnpj.Business.Validacoes
     public class EmpresaValidation : AbstractValidator<Empresa>
     {
         private string ErroStringVazia = "O campo {PropertyName} precisa ser fornecido";
-        private string ErroStringTamanhoInvalido = "O campo {PropertyName} precisa ter entre {MinLenth} e {MaxLength} caracteres";
+        private string ErroStringTamanhoInvalido = "O campo {PropertyName} precisa ter entre {MinLength} e {MaxLength} caracteres";
 
         public EmpresaValidation()
         {
