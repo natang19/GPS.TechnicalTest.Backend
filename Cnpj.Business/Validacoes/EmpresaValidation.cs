@@ -7,7 +7,7 @@ namespace Cnpj.Business.Validacoes
     public class EmpresaValidation : AbstractValidator<Empresa>
     {
         private string ErroStringVazia = "O campo {PropertyName} precisa ser fornecido";
-        private string ErroStringTamanhoInvalido = "O campo {PropertyName} precisa ser fornecido";
+        private string ErroStringTamanhoInvalido = "O campo {PropertyName} precisa ter entre {MinLenth} e {MaxLength} caracteres";
 
         public EmpresaValidation()
         {
@@ -49,7 +49,7 @@ namespace Cnpj.Business.Validacoes
                 .Length(1, 200).WithMessage(ErroStringTamanhoInvalido);
 
             RuleFor(e => e.porte)
-                .NotEmpty().WithMessage("O campo {PropertyName} precisa ser fornecido")
+                .NotEmpty().WithMessage(ErroStringVazia)
                 .Length(1, 15).WithMessage(ErroStringTamanhoInvalido);
 
             RuleFor(e => e.abertura).LessThanOrEqualTo(DateTime.Today).WithMessage("A data de abertura da empresa é inválida, pois é maior que a data de hoje.");
@@ -72,7 +72,7 @@ namespace Cnpj.Business.Validacoes
 
             RuleFor(e => e.tipo)
                 .NotEmpty().WithMessage(ErroStringVazia)
-                .Length(6).WithMessage("O campo {PropertyName} precisa ter {MaxLength} caracteres");
+                .Length(6).WithMessage(ErroStringTamanhoInvalido);
 
             RuleFor(e => e.capital_social)
                 .GreaterThan(0).WithMessage("O capital social da empresa é inválido pois seu valor é negativo.");
