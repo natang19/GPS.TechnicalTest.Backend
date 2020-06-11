@@ -39,7 +39,7 @@ namespace Cnpj.Api.Controllers
         [HttpGet("{id:guid}")]
         public async Task<ActionResult<EmpresaViewModel>> ObterPorId(Guid id)
         {
-            var empresaDetalhe = _mapper.Map<IEnumerable<EmpresaViewModel>>(await _empresaService.Obter(id));
+            var empresaDetalhe = _mapper.Map<EmpresaViewModel>(await _empresaService.Obter(id));
 
             if(empresaDetalhe == null)
             {
